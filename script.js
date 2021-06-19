@@ -52,3 +52,34 @@ const flightData = [56557, "Abel Jones"];
 anotherBook.call(egyptAir, ...flightData);
 console.log(egyptAir);
 
+// THE BIND 
+// This defines the this keyword once
+const bookEA = anotherBook.bind(egyptAir);
+const bookAF = anotherBook.bind(airFrance);
+const bookAP = anotherBook.bind(airPeace);
+bookEA(345, "Jon Fred");
+
+// Here the bind method was use to preset parameters of the function, so when we call the function, we only need to fill in parameters that where not preset 
+const bookAF25 = anotherBook.bind(airFrance, 677448);
+bookAF25("Jack Benson");
+bookAF25("Kelvin Jones");
+
+
+// Bind method with event listeners
+airFrance.planes = 300;
+airFrance.buyPlane = function () {
+
+  console.log(this);
+
+  this.planes++
+  console.log(this.planes);
+}
+
+const button = document.createElement('button');
+document.body.appendChild(button);
+
+document.querySelector('button').addEventListener("click", airFrance.buyPlane.bind(airFrance));
+
+
+
+
